@@ -20,6 +20,9 @@ class AppFixtures extends Fixture
             $user->setEmail('user' . $i . '@example.com');
             $user->setPassword(password_hash('user' . $i, PASSWORD_BCRYPT));
             $user->setRoles(['ROLE_USER']);
+            $user->setName('Name_User ' . $i);
+            $user->setLastName('Last_Name_User ' . $i);
+            $user->setIsVerified(true);
             $manager->persist($user);
             $users[] = $user;
         }
@@ -28,6 +31,9 @@ class AppFixtures extends Fixture
         $admin->setEmail('admin@example.com');
         $admin->setPassword(password_hash('admin', PASSWORD_BCRYPT));
         $admin->setRoles(['ROLE_ADMIN']);
+        $admin->setName('Name_Admin ' . $i);
+        $admin->setLastName('Last_Name_Admin ' . $i);
+        $admin->setIsVerified(true);
         $manager->persist($admin);
 
         for ($j = 1; $j <= 10; $j++) {
@@ -37,7 +43,7 @@ class AppFixtures extends Fixture
                 $recette->setTempsPreparation(rand(10, 60));
                 $recette->setTempsCuisson(rand(10, 60));
                 $recette->setInstructions('Instructions de la recette ' . $j);
-                $recette->setImage('https://picsum.photos/1920/1080?random=' . $j); // Image aléatoire pour chaque recette
+                $recette->setImage('https://picsum.photos/1920/1080?random=' . $j);
                 $manager->persist($recette);
 
             for ($k = 1; $k <= rand(2, 5); $k++) {
